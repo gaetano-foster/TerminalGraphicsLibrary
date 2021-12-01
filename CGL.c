@@ -135,3 +135,44 @@ void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter) {
 		}
 	}
 }
+
+void exp_drawshape(Shape shape, char fillCharacter, int mode) {
+    if (mode == CGL_WIREFRAME) {
+        for (int i = 0; i < shape.numpts; i++) {
+            if (i == 0) {
+                drawline(shape.points[shape.numpts - 1].x, shape.points[shape.numpts - 1].y, shape.points[0].x, shape.points[0].y, fillCharacter);   
+            } else {
+                drawline(shape.points[i - 1].x, shape.points[i - 1].y, shape.points[i].x, shape.points[i].y, fillCharacter);   
+            }
+        }
+    } else if (mode == CGL_FILL) {
+        for (int i = 0; i < shape.numpts; i++) {
+            int i1 = i + 1 , i2 = i + 2;
+            if (i2 > shape.numpts) {
+                if (i1 > shape.numpts) {
+                    i2 = 1;
+                    i1 = 0;
+                } else {
+                    i2 = 0;
+                }
+            }
+            
+            drawtriangle(shape.points[i].x, shape.points[i].y, shape.points[i1].x, shape.points[i1].y, shape.points[i2].x, shape.points[i2].y, fillCharacter, mode);
+        }
+    }
+}
+
+void newshape(Shape *shape, Coord *points, size_t numpts) {
+    shape = (Shape *)malloc(sizeof(Shape));
+    shape->points = (Coord *)malloc(numpts * sizeof(Coord));
+    shape->numpts = numpts;
+    
+    for(int i = 0; i < numpts; i++) {
+        *(shape->points + i) = points[i];
+    }
+}
+
+void freeshape(Shape *shape) {
+    free(shape);
+    free(shape->points);   
+}

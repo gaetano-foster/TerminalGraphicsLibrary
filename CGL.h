@@ -6,6 +6,7 @@
 	
 	#include <stdio.h>
 	#include <stdlib.h>
+    #include <stddef.h>
 	
 	// os testing
 	#ifdef _WIN32
@@ -44,12 +45,20 @@
 	typedef struct tri {
 		Coord points[3];
 	} Tri;
+    
+    typedef struct shape {
+        Coord *points;
+        size_t numpts;
+    } Shape;
 	
 	// functions
 	
 	void drawrect(Rect rect, char fillCharacter, int mode);
 	void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter);
 	void drawtriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, char fillCharacter, int mode);
+    void exp_drawshape(Shape shape, char fillCharacter, int mode);
+    void newshape(Shape *shape, Coord *points, size_t numpts);
+    void freeshape(Shape *shape);
 	
 	#ifdef __cplusplus
 		}
