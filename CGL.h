@@ -14,7 +14,7 @@
 		#define clrscr() system("cls")
 		typedef COORD Coord;
 
-	#elif defined(uniX) || defined(__uniX__) || defined(__uniX)*/	
+	#elif defined(unix) || defined(__unix__) || defined(__unix)	
 		#define gotopos(X, Y) printf("%c[%d;%df", 0X1B, Y, X)	
 		#define clrscr() system("clear")
 		
