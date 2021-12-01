@@ -36,7 +36,7 @@ Any function, macro, or structure prefixed with _exp\__ is **experimental**. The
 
 ## Usage
 
-Using this library in your project could not be easier! Simply download the source, double click the `compile.bat` file, and drag the "CGL.h" and "libCGL.a" files into your projects folder.
+Using this library in your project could not be easier! Simply download the source, double click the `compile.bat` file (windows only), and drag the "CGL.h" and "libCGL.a" files into your projects folder.
 
 ***MAKE SURE YOU ARE USING THE GCC COMPILER***
 
@@ -52,9 +52,10 @@ To give an idea of what you can do with this library, I've created a simple demo
 
 void main(void) {
 	Rect rectangle = (Rect){ 10, 10, 10, 5 };
+	clrscr();
 	for (;;) {
 		drawrect(rectangle, '#', CGL_FILL);
-		if (clock() / CLOCKS_PER_SEC > 3) 
+		if (clock() / CLOCKS_PER_SEC >= 3) 
 			break;
 	}
 }
