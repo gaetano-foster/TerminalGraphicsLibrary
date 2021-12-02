@@ -52,11 +52,11 @@ To give an idea of what you can do with this library, I've created a simple demo
 
 void main(void) {
 	Rect rectangle = (Rect){ 10, 10, 10, 5 };
-	clrscr();
+        clrscr();
 	for (;;) {
 		drawrect(rectangle, '#', CGL_FILL);
-		if (clock() / CLOCKS_PER_SEC >= 3) 
-			break;
+        	break;
 	}
+	gotopos(0, 21);
 }
 ```
