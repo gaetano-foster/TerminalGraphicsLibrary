@@ -24,11 +24,19 @@ Any function, macro, or structure prefixed with _exp\__ is **experimental**. The
   * Members: 
     * points[3] - the triangle's vertices
   * Type Definition: Tri
+* struct shape - A shape with an undefined amount of vertices
+  * Members:
+    * \*points - the shape's vertices
+    * numpts - the amount of verties (numpts -> number of points)  
+  * Type Definition: Shape
  
 ### Functions/Macros:
 * drawrect - draws specified rectangle
 * drawline - draws a line between specified coordinates
 * drawtriangle - draws triangle using specified vertices
+* ***exp_drawshape - draws the specified shape***
+* newshape - allocates memory needed for a shape
+* freeshape - frees memory used by shape
 * drawtri - draws specified triangl
 * setchar - prints char at specified coordinates
 * clrscr - clears screen
@@ -36,9 +44,9 @@ Any function, macro, or structure prefixed with _exp\__ is **experimental**. The
 
 ## Usage
 
-Using this library in your project could not be easier! Simply download the source, double click the `compile.bat` file (windows only), and drag the "CGL.h" and "libCGL.a" files into your projects folder.
+Using this library in your project could not be easier! Simply download the source, execute the `win32_compile` or `unix_compile` file, and drag the "CGL.h" and "libCGL.a" files into your projects folder.
 
-***MAKE SURE YOU ARE USING THE GCC COMPILER***
+***MAKE SURE YOU HAVE GCC INSTALLED ONTO YOUR COMPUTER***
 
 To compile your code to an executable, simply execute the following command in your console/terminal, making sure you are in the directory of your project:
 `gcc [filename].c -L. -lCGL -o [filename]`
@@ -48,7 +56,6 @@ To give an idea of what you can do with this library, I've created a simple demo
 
 ```
 #include "CGL.h"
-#include <time.h>
 
 void main(void) {
 	Rect rectangle = (Rect){ 10, 10, 10, 5 };
