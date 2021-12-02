@@ -34,7 +34,7 @@ Any function, macro, or structure prefixed with _exp\__ is **experimental**. The
 * drawrect - draws specified rectangle
 * drawline - draws a line between specified coordinates
 * drawtriangle - draws triangle using specified vertices
-* ***exp_drawshape - draws the specified shape***
+* ***exp_drawshape - draws the specified shape*** // note that the fill function may not be fully functional. It needs work. // 
 * newshape - allocates memory needed for a shape
 * freeshape - frees memory used by shape
 * drawtri - draws specified triangl
