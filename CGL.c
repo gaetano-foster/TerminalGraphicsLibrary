@@ -136,13 +136,13 @@ void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter) {
 	}
 }
 
-void drawshape(Shape shape, char fillCharacter, int mode) {
+void exp_drawshape(Shape shape, char fillCharacter, int mode) {
     if (mode == CGL_WIREFRAME) {
         for (int i = 0; i < shape.numpts; i++) {
             if (i == 0) {
-                drawline(shape.points[shape.numpts - 1].x, shape.points[shape.numpts - 1].y, shape.points[0].x, shape.points[0].y, fillCharacter);   
+                drawline(shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter);   
             } else {
-                drawline(shape.points[i - 1].x, shape.points[i - 1].y, shape.points[i].x, shape.points[i].y, fillCharacter);   
+                drawline(shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter);   
             }
         }
     } else if (mode == CGL_FILL) {
@@ -157,7 +157,7 @@ void drawshape(Shape shape, char fillCharacter, int mode) {
                 }
             }
             
-            drawtriangle(shape.points[i].x, shape.points[i].y, shape.points[i1].x, shape.points[i1].y, shape.points[i2].x, shape.points[i2].y, fillCharacter, mode);
+            drawtriangle(shape.points[i].X, shape.points[i].Y, shape.points[i1].X, shape.points[i1].Y, shape.points[i2].X, shape.points[i2].Y, fillCharacter, mode);
         }
     }
 }
