@@ -5,7 +5,7 @@ A simple, yet effective graphics library targetting all major operating systems.
 ## Features
 
 ### Warnings: 
-Any function, macro, or structure prefixed with _exp\__ is **experimental**. They may not be very efficient, fast or well implemented. Use at your own risk.
+Any function, macro, or structure prefixed with _exp\__ is **experimental/unfinished**. They may not be very efficient, fast or well implemented. Use at your own risk.
 
 ### Structures:
 * struct coord - A coordinate
@@ -27,6 +27,7 @@ Any function, macro, or structure prefixed with _exp\__ is **experimental**. The
 * struct shape - A shape with an undefined amount of vertices
   * Members:
     * \*points - the shape's vertices
+    * mid - the shape's mid point (average of all points)
     * numpts - the amount of verties (numpts -> number of points)  
   * Type Definition: Shape
  
@@ -34,7 +35,7 @@ Any function, macro, or structure prefixed with _exp\__ is **experimental**. The
 * drawrect - draws specified rectangle
 * drawline - draws a line between specified coordinates
 * drawtriangle - draws triangle using specified vertices
-* ***exp_drawshape - draws the specified shape*** // note that the fill function may not be fully functional. It needs work. // 
+* exp_drawshape - draws the specified shape
 * newshape - allocates memory needed for a shape
 * freeshape - frees memory used by shape
 * drawtri - draws specified triangl
