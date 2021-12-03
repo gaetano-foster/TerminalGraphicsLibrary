@@ -47,7 +47,7 @@
 	} Tri;
     
     typedef struct shape {
-        Coord *points;
+        Coord *points, mid;
         size_t numpts;
     } Shape;
 	

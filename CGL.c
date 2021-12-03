@@ -147,29 +147,29 @@ void exp_drawshape(Shape shape, char fillCharacter, int mode) {
         }
     } else if (mode == CGL_FILL) {
         for (int i = 0; i < shape.numpts; i++) {
-            int i1 = i + 1 , i2 = i + 2;
-            if (i2 > shape.numpts) {
-                if (i1 > shape.numpts) {
-                    i2 = 1;
-                    i1 = 0;
-                } else {
-                    i2 = 0;
-                }
+            if (i == 0) {
+                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter);   
+            } else {
+                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter);   
             }
-            
-            drawtriangle(shape.points[i].X, shape.points[i].Y, shape.points[i1].X, shape.points[i1].Y, shape.points[i2].X, shape.points[i2].Y, fillCharacter, mode);
         }
     }
 }
 
 void newshape(Shape *shape, Coord *points, size_t numpts) {
+    int mx = 0, my = 0;
     shape = (Shape *)malloc(sizeof(Shape));
     shape->points = (Coord *)malloc(numpts * sizeof(Coord));
     shape->numpts = numpts;
     
     for(int i = 0; i < numpts; i++) {
         *(shape->points + i) = points[i];
+        mx += points[i].X;
+        my += points[i].Y;
     }
+    mx /= numpts;
+    my /= numpts;
+    shape->mid = coord(mx, my);
 }
 
 void freeshape(Shape *shape) {
