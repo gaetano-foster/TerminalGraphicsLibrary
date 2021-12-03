@@ -56,7 +56,7 @@
 	void drawrect(Rect rect, char fillCharacter, int mode);
 	void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter);
 	void drawtriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, char fillCharacter, int mode);
-    void exp_drawshape(Shape shape, char fillCharacter, int mode);
+    void drawshape(Shape shape, char fillCharacter, int mode);
     void newshape(Shape *shape, Coord *points, size_t numpts);
     void freeshape(Shape *shape);
 	

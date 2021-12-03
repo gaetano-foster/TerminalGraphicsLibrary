@@ -136,7 +136,7 @@ void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter) {
 	}
 }
 
-void exp_drawshape(Shape shape, char fillCharacter, int mode) {
+void drawshape(Shape shape, char fillCharacter, int mode) {
     if (mode == CGL_WIREFRAME) {
         for (int i = 0; i < shape.numpts; i++) {
             if (i == 0) {
