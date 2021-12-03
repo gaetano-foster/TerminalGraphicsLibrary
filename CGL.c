@@ -148,9 +148,9 @@ void drawshape(Shape shape, char fillCharacter, int mode) {
     } else if (mode == CGL_FILL) {
         for (int i = 0; i < shape.numpts; i++) {
             if (i == 0) {
-                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter);   
+                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter, mode);   
             } else {
-                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter);   
+                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter, mode);   
             }
         }
     }
