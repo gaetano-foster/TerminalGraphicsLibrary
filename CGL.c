@@ -1,26 +1,28 @@
 #include <math.h>
 #include "CGL.h"
 
-void drawrect(Rect rect, char fillCharacter, int mode) {
+void drawrect(Rect rect, char fillCharacter, int mode, char color) {
 	if (mode == CGL_WIREFRAME) {
-		drawline(rect.x, rect.y, rect.x + rect.w, rect.y, fillCharacter);
-		drawline(rect.x, rect.y, rect.x, rect.y + rect.h, fillCharacter);
-		drawline(rect.x + rect.w, rect.y + rect.h, rect.x, rect.y + rect.h, fillCharacter);
-		drawline(rect.x + rect.w, rect.y + rect.h, rect.x + rect.w, rect.y, fillCharacter);
+		drawline(rect.x, rect.y, rect.x + rect.w, rect.y, fillCharacter, color);
+		drawline(rect.x, rect.y, rect.x, rect.y + rect.h, fillCharacter, color);
+		drawline(rect.x + rect.w, rect.y + rect.h, rect.x, rect.y + rect.h, fillCharacter, color);
+		drawline(rect.x + rect.w, rect.y + rect.h, rect.x + rect.w, rect.y, fillCharacter, color);
 	} else if (mode == CGL_FILL) {
+		setcolor(color);
 		for (int Y = rect.y; Y < rect.y + rect.h; Y++) {
 			for (int X = rect.x; X < rect.x + rect.w; X++) {
 				setchar(X, Y, fillCharacter);
 			}
 		}
+		setcolor(LIGHT_GREY);
 	}
 }
 
-void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillCharacter, int mode) {
+void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillCharacter, int mode, char color) {
 	if (mode == CGL_WIREFRAME) {
-		drawline(X0, Y0, X1, Y1, fillCharacter);
-		drawline(X1, Y1, X2, Y2, fillCharacter);
-		drawline(X2, Y2, X0, Y0, fillCharacter);
+		drawline(X0, Y0, X1, Y1, fillCharacter, color);
+		drawline(X1, Y1, X2, Y2, fillCharacter, color);
+		drawline(X2, Y2, X0, Y0, fillCharacter, color);
 	} else if (mode == CGL_FILL) {
 		int X, Y, dX, dY, dX1, dY1, pX, pY, Xe, Ye, i;
 
@@ -35,7 +37,7 @@ void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillChara
 			else {
 				X = X2; Y = Y2; Xe = X1;
 			}
-			drawline(X0, Y0, X, Y, fillCharacter);
+			drawline(X0, Y0, X, Y, fillCharacter, color);
 	
 			for (i = 0; X < Xe; i++)
 			{
@@ -49,7 +51,7 @@ void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillChara
 						Y = Y - 1;
 					pX = pX + 2 * (dY1 - dX1);
 				}
-				drawline(X0, Y0, X, Y, fillCharacter);
+				drawline(X0, Y0, X, Y, fillCharacter, color);
 			}
 		}
 		else {
@@ -60,7 +62,7 @@ void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillChara
 				X = X2; Y = Y2; Ye = Y1;
 			}
 	
-			drawline(X0, Y0, X, Y, fillCharacter);
+			drawline(X0, Y0, X, Y, fillCharacter, color);
 	
 			for (i = 0; Y < Ye; i++) {
 				Y = Y + 1;
@@ -73,13 +75,14 @@ void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillChara
 						X = X - 1;
 					pY = pY + 2 * (dX1 - dY1);
 				}
-				drawline(X0, Y0, X, Y, fillCharacter);
+				drawline(X0, Y0, X, Y, fillCharacter, color);
 			}
 		}
 	}
 }
 
-void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter) {
+void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter, char color) {
+	setcolor(color);
 	int X, Y, dX, dY, dX1, dY1, pX, pY, Xe, Ye, i;
 
 	dX = X2 - X1; dY = Y2 - Y1;
@@ -134,23 +137,24 @@ void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter) {
 			setchar(X, Y, fillCharacter);
 		}
 	}
+	setcolor(LIGHT_GREY);
 }
 
-void drawshape(Shape shape, char fillCharacter, int mode) {
+void drawshape(Shape shape, char fillCharacter, int mode, char color) {
     if (mode == CGL_WIREFRAME) {
         for (int i = 0; i < shape.numpts; i++) {
             if (i == 0) {
-                drawline(shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter);   
+                drawline(shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter, color);   
             } else {
-                drawline(shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter);   
+                drawline(shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter, color);   
             }
         }
     } else if (mode == CGL_FILL) {
         for (int i = 0; i < shape.numpts; i++) {
             if (i == 0) {
-                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter, mode);   
+                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter, mode, color);   
             } else {
-                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter, mode);   
+                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter, mode, color);   
             }
         }
     }
