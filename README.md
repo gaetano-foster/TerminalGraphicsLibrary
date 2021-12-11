@@ -35,7 +35,7 @@ Any function, macro, or structure prefixed with _exp\__ is **experimental/unfini
 * drawrect - draws specified rectangle
 * drawline - draws a line between specified coordinates
 * drawtriangle - draws triangle using specified vertices
-* exp_drawshape - draws the specified shape
+* drawshape - draws the specified shape
 * newshape - allocates memory needed for a shape
 * freeshape - frees memory used by shape
 * drawtri - draws specified triangl
@@ -61,10 +61,7 @@ To give an idea of what you can do with this library, I've created a simple demo
 void main(void) {
 	Rect rectangle = (Rect){ 10, 10, 10, 5 };
         clrscr();
-	for (;;) {
-		drawrect(rectangle, '#', CGL_FILL);
-        	break;
-	}
+	drawrect(rectangle, '#', CGL_FILL, RED);
 	gotopos(0, 21);
 }
 ```
