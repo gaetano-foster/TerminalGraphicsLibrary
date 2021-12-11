@@ -17,14 +17,14 @@
 		typedef COORD Coord;
 		
 		enum color {
-			DARK_BLUE, GREEN, DARK_CYAN, 
-			DARK_RED, DARK_MAGENTA, DARK_YELLOW, 
-			LIGHT_GREY, GREY, BLUE, LIME, CYAN, 
-			RED, MAGENTA, YELLOW, WHITE
+			CGL_DARK_BLUE, CGL_GREEN, CGL_DARK_CYAN, 
+			CGL_DARK_RED, CGL_DARK_MAGENTA, CGL_DARK_YELLOW, 
+			CGL_LIGHT_GREY, CGL_GREY, CGL_BLUE, CGL_LIME, CGL_CYAN, 
+			CGL_RED, CGL_MAGENTA, CGL_YELLOW, CGL_WHITE
 		};
 
 	#elif defined(unix) || defined(__unix__) || defined(__unix)	
-		#define setcolor(color) printf(color)
+		#define setcolor(color) printf("\x1B[%dm", color)
 		#define gotopos(X, Y) printf("%c[%d;%df", 0X1B, Y, X)	
 		#define clrscr() system("clear")
 		
@@ -33,10 +33,10 @@
 		} Coord;
 		
 		enum color {
-			DARK_BLUE = "\x1B[34m", GREEN = "\x1B[32m", DARK_CYAN = "\x1B[36m", 
-			DARK_RED = "\x1B[31m", DARK_MAGENTA = "\x1B[35m", DARK_YELLOW = "\x1B[33m", 
-			LIGHT_GREY "\x1B[37m", GREY = "\x1B[90m", BLUE = "\x1B[94m", LIME = "\x1B[92m", CYAN = "\x1B[96m", 
-			RED = "\x1B[91m", MAGENTA = "\x1B[95m", YELLOW = "\x1B[93m", WHITE = "\x1B[97m"
+			CGL_DARK_BLUE = 34, CGL_GREEN = 32, CGL_DARK_CYAN = 36, 
+			CGL_DARK_RED = 31, CGL_DARK_MAGENTA = 35, CGL_DARK_YELLOW = 33, 
+			CGL_LIGHT_GREY 37, CGL_GREY = 90, CGL_BLUE = 94, CGL_LIME = 92, CGL_CYAN = 96, 
+			CGL_RED = 91, CGL_MAGENTA = 95, CGL_YELLOW = 93, CGL_WHITE = 97
 		};
   
 	#endif

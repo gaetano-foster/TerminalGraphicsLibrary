@@ -14,7 +14,7 @@ void drawrect(Rect rect, char fillCharacter, int mode, int color) {
 				setchar(X, Y, fillCharacter);
 			}
 		}
-		setcolor(LIGHT_GREY);
+		setcolor(CGL_LIGHT_GREY);
 	}
 }
 
@@ -137,7 +137,7 @@ void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter, int color) {
 			setchar(X, Y, fillCharacter);
 		}
 	}
-	setcolor(LIGHT_GREY);
+	setcolor(CGL_LIGHT_GREY);
 }
 
 void drawshape(Shape shape, char fillCharacter, int mode, int color) {
