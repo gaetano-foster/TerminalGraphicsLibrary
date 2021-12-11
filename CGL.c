@@ -1,7 +1,7 @@
 #include <math.h>
 #include "CGL.h"
 
-void drawrect(Rect rect, char fillCharacter, int mode, char color) {
+void drawrect(Rect rect, char fillCharacter, int mode, int color) {
 	if (mode == CGL_WIREFRAME) {
 		drawline(rect.x, rect.y, rect.x + rect.w, rect.y, fillCharacter, color);
 		drawline(rect.x, rect.y, rect.x, rect.y + rect.h, fillCharacter, color);
@@ -18,7 +18,7 @@ void drawrect(Rect rect, char fillCharacter, int mode, char color) {
 	}
 }
 
-void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillCharacter, int mode, char color) {
+void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillCharacter, int mode, int color) {
 	if (mode == CGL_WIREFRAME) {
 		drawline(X0, Y0, X1, Y1, fillCharacter, color);
 		drawline(X1, Y1, X2, Y2, fillCharacter, color);
@@ -81,7 +81,7 @@ void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillChara
 	}
 }
 
-void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter, char color) {
+void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter, int color) {
 	setcolor(color);
 	int X, Y, dX, dY, dX1, dY1, pX, pY, Xe, Ye, i;
 
@@ -140,7 +140,7 @@ void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter, char color) {
 	setcolor(LIGHT_GREY);
 }
 
-void drawshape(Shape shape, char fillCharacter, int mode, char color) {
+void drawshape(Shape shape, char fillCharacter, int mode, int color) {
     if (mode == CGL_WIREFRAME) {
         for (int i = 0; i < shape.numpts; i++) {
             if (i == 0) {

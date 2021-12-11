@@ -69,10 +69,10 @@
 	
 	// functions
 	
-	void drawrect(Rect rect, char fillCharacter, int mode, char color);
-	void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter, char color);
-	void drawtriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, char fillCharacter, int mode, char color);
-    void drawshape(Shape shape, char fillCharacter, int mode, char color);
+	void drawrect(Rect rect, char fillCharacter, int mode, int color);
+	void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter, int color);
+	void drawtriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, char fillCharacter, int mode, int color);
+    void drawshape(Shape shape, char fillCharacter, int mode, int color);
     void newshape(Shape *shape, Coord *points, size_t numpts);
     void freeshape(Shape *shape);
 	
