@@ -17,7 +17,7 @@
 		typedef COORD Coord;
 		
 		enum color {
-			CGL_CURRENT, CGL_DARK_BLUE, CGL_GREEN, CGL_DARK_CYAN, 
+			CGL_WIN32, CGL_DARK_BLUE, CGL_GREEN, CGL_DARK_CYAN, 
 			CGL_DARK_RED, CGL_DARK_MAGENTA, CGL_DARK_YELLOW, 
 			CGL_LIGHT_GREY, CGL_GREY, CGL_BLUE, CGL_LIME, CGL_CYAN, 
 			CGL_RED, CGL_MAGENTA, CGL_YELLOW, CGL_WHITE
@@ -45,7 +45,7 @@
 	
 	#define coord(X, Y) ((Coord) { X, Y })
 	#define setchar(X, Y, character) gotopos(X, Y); putchar(character); gotopos(0, 0)
-	#define drawtri(tri, fillCharacter, mode) drawtriangle(tri.points[0].X, tri.points[0].Y, tri.points[1].X, tri.points[1].Y, tri.points[2].X, tri.points[2].Y, fillCharacter, mode);
+	#define drawtri(tri, fillCharacter, mode, color) drawtriangle(tri.points[0].X, tri.points[0].Y, tri.points[1].X, tri.points[1].Y, tri.points[2].X, tri.points[2].Y, fillCharacter, mode, color)
 	
 	// typedefs, structs, enums
 	
