@@ -21,7 +21,7 @@
 			DARK_RED, DARK_MAGENTA, DARK_YELLOW, 
 			LIGHT_GREY, GREY, BLUE, LIME, CYAN, 
 			RED, MAGENTA, YELLOW, WHITE
-		}
+		};
 
 	#elif defined(unix) || defined(__unix__) || defined(__unix)	
 		#define setcolor(color) printf(color)
@@ -37,7 +37,7 @@
 			DARK_RED = "\x1B[31m", DARK_MAGENTA = "\x1B[35m", DARK_YELLOW = "\x1B[33m", 
 			LIGHT_GREY "\x1B[37m", GREY = "\x1B[90m", BLUE = "\x1B[94m", LIME = "\x1B[92m", CYAN = "\x1B[96m", 
 			RED = "\x1B[91m", MAGENTA = "\x1B[95m", YELLOW = "\x1B[93m", WHITE = "\x1B[97m"
-		}
+		};
   
 	#endif
 	
