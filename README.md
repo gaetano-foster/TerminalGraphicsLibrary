@@ -58,7 +58,7 @@ To give an idea of what you can do with this library, I've created a simple demo
 ```
 #include "CGL.h"
 
-void main(void) {
+int main(int argc, char **argv) {
 	Rect rectangle = (Rect){ 10, 10, 10, 5 };
         clrscr();
 	drawrect(rectangle, '#', CGL_FILL, RED);
