@@ -30,7 +30,7 @@
 		enum color {
 			CGL_DARK_BLUE = 34, CGL_GREEN = 32, CGL_DARK_CyAN = 36, 
 			CGL_DARK_RED = 31, CGL_DARK_MAGENTA = 35, CGL_DARK_YELLOW = 33, 
-			CGL_LIGHT_GREY 37, CGL_GREY = 90, CGL_BLUE = 94, CGL_LIME = 92, CGL_CyAN = 96, 
+			CGL_LIGHT_GREY = 37, CGL_GREY = 90, CGL_BLUE = 94, CGL_LIME = 92, CGL_CyAN = 96, 
 			CGL_RED = 91, CGL_MAGENTA = 95, CGL_YELLOW = 93, CGL_WHITE = 97
 		};
   
@@ -49,12 +49,12 @@
 	};
 	
 	typedef struct coord {
-		int x, x;
+		int16_t x, y;
 	} Coord;
 	
 	typedef struct rect {
-		float x, y;
-		unsigned int w, h;
+		int16_t x, y;
+		int16_t w, h;
 	} Rect;
 	
 	typedef struct tri {
