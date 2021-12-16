@@ -9,132 +9,132 @@ void drawrect(Rect rect, char fillCharacter, int mode, int color) {
 		drawline(rect.x + rect.w, rect.y + rect.h, rect.x + rect.w, rect.y, fillCharacter, color);
 	} else if (mode == CGL_FILL) {
 		setcolor(color);
-		for (int Y = rect.y; Y < rect.y + rect.h; Y++) {
-			for (int X = rect.x; X < rect.x + rect.w; X++) {
-				setchar(X, Y, fillCharacter);
+		for (int y = rect.y; y < rect.y + rect.h; y++) {
+			for (int x = rect.x; x < rect.x + rect.w; x++) {
+				setchar(x, y, fillCharacter);
 			}
 		}
 		setcolor(CGL_LIGHT_GREY);
 	}
 }
 
-void drawtriangle(int X0, int Y0, int X1, int Y1, int X2, int Y2, char fillCharacter, int mode, int color) {
+void drawtriangle(int x0, int y0, int x1, int y1, int x2, int y2, char fillCharacter, int mode, int color) {
 	if (mode == CGL_WIREFRAME) {
-		drawline(X0, Y0, X1, Y1, fillCharacter, color);
-		drawline(X1, Y1, X2, Y2, fillCharacter, color);
-		drawline(X2, Y2, X0, Y0, fillCharacter, color);
+		drawline(x0, y0, x1, y1, fillCharacter, color);
+		drawline(x1, y1, x2, y2, fillCharacter, color);
+		drawline(x2, y2, x0, y0, fillCharacter, color);
 	} else if (mode == CGL_FILL) {
-		int X, Y, dX, dY, dX1, dY1, pX, pY, Xe, Ye, i;
+		int x, y, dx, dy, dx1, dy1, px, py, xe, ye, i;
 
-		dX = X2 - X1; dY = Y2 - Y1;
-		dX1 = abs(dX); dY1 = abs(dY);
-		pX = 2 * dY1 - dX1;	pY = 2 * dX1 - dY1;
+		dx = x2 - x1; dy = y2 - y1;
+		dx1 = abs(dx); dy1 = abs(dy);
+		px = 2 * dy1 - dx1;	py = 2 * dx1 - dy1;
 	
-		if (dY1 <= dX1) {
-			if (dX >= 0) {
-				X = X1; Y = Y1; Xe = X2;
+		if (dy1 <= dx1) {
+			if (dx >= 0) {
+				x = x1; y = y1; xe = x2;
 			}
 			else {
-				X = X2; Y = Y2; Xe = X1;
+				x = x2; y = y2; xe = x1;
 			}
-			drawline(X0, Y0, X, Y, fillCharacter, color);
+			drawline(x0, y0, x, y, fillCharacter, color);
 	
-			for (i = 0; X < Xe; i++)
+			for (i = 0; x < xe; i++)
 			{
-				X = X + 1;
-				if (pX < 0)
-					pX = pX + 2 * dY1;
+				x = x + 1;
+				if (px < 0)
+					px = px + 2 * dy1;
 				else {
-					if ((dX < 0 && dY < 0) || (dX > 0 && dY > 0))
-						Y = Y + 1;
+					if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+						y = y + 1;
 					else
-						Y = Y - 1;
-					pX = pX + 2 * (dY1 - dX1);
+						y = y - 1;
+					px = px + 2 * (dy1 - dx1);
 				}
-				drawline(X0, Y0, X, Y, fillCharacter, color);
+				drawline(x0, y0, x, y, fillCharacter, color);
 			}
 		}
 		else {
-			if (dY >= 0) {
-				X = X1; Y = Y1; Ye = Y2;
+			if (dy >= 0) {
+				x = x1; y = y1; ye = y2;
 			}
 			else {
-				X = X2; Y = Y2; Ye = Y1;
+				x = x2; y = y2; ye = y1;
 			}
 	
-			drawline(X0, Y0, X, Y, fillCharacter, color);
+			drawline(x0, y0, x, y, fillCharacter, color);
 	
-			for (i = 0; Y < Ye; i++) {
-				Y = Y + 1;
-				if (pY <= 0)
-					pY = pY + 2 * dX1;
+			for (i = 0; y < ye; i++) {
+				y = y + 1;
+				if (py <= 0)
+					py = py + 2 * dx1;
 				else {
-					if ((dX < 0 && dY < 0) || (dX > 0 && dY > 0))
-						X = X + 1;
+					if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+						x = x + 1;
 					else
-						X = X - 1;
-					pY = pY + 2 * (dX1 - dY1);
+						x = x - 1;
+					py = py + 2 * (dx1 - dy1);
 				}
-				drawline(X0, Y0, X, Y, fillCharacter, color);
+				drawline(x0, y0, x, y, fillCharacter, color);
 			}
 		}
 	}
 }
 
-void drawline(int X1, int Y1, int X2, int Y2, char fillCharacter, int color) {
+void drawline(int x1, int y1, int x2, int y2, char fillCharacter, int color) {
 	setcolor(color);
-	int X, Y, dX, dY, dX1, dY1, pX, pY, Xe, Ye, i;
+	int x, y, dx, dy, dx1, dy1, px, py, xe, ye, i;
 
-	dX = X2 - X1; dY = Y2 - Y1;
-	dX1 = abs(dX); dY1 = abs(dY);
-	pX = 2 * dY1 - dX1;	pY = 2 * dX1 - dY1;
+	dx = x2 - x1; dy = y2 - y1;
+	dx1 = abs(dx); dy1 = abs(dy);
+	px = 2 * dy1 - dx1;	py = 2 * dx1 - dy1;
 
-	if (dY1 <= dX1) {
-		if (dX >= 0) {
-			X = X1; Y = Y1; Xe = X2;
+	if (dy1 <= dx1) {
+		if (dx >= 0) {
+			x = x1; y = y1; xe = x2;
 		}
 		else {
-			X = X2; Y = Y2; Xe = X1;
+			x = x2; y = y2; xe = x1;
 		}
-		setchar(X, Y, fillCharacter);
+		setchar(x, y, fillCharacter);
 
-		for (i = 0; X < Xe; i++)
+		for (i = 0; x < xe; i++)
 		{
-			X = X + 1;
-			if (pX < 0)
-				pX = pX + 2 * dY1;
+			x = x + 1;
+			if (px < 0)
+				px = px + 2 * dy1;
 			else {
-				if ((dX < 0 && dY < 0) || (dX > 0 && dY > 0))
-					Y = Y + 1;
+				if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+					y = y + 1;
 				else
-					Y = Y - 1;
-				pX = pX + 2 * (dY1 - dX1);
+					y = y - 1;
+				px = px + 2 * (dy1 - dx1);
 			}
-			setchar(X, Y, fillCharacter);
+			setchar(x, y, fillCharacter);
 		}
 	}
 	else {
-		if (dY >= 0) {
-			X = X1; Y = Y1; Ye = Y2;
+		if (dy >= 0) {
+			x = x1; y = y1; ye = y2;
 		}
 		else {
-			X = X2; Y = Y2; Ye = Y1;
+			x = x2; y = y2; ye = y1;
 		}
 
-		setchar(X, Y, fillCharacter);
+		setchar(x, y, fillCharacter);
 
-		for (i = 0; Y < Ye; i++) {
-			Y = Y + 1;
-			if (pY <= 0)
-				pY = pY + 2 * dX1;
+		for (i = 0; y < ye; i++) {
+			y = y + 1;
+			if (py <= 0)
+				py = py + 2 * dx1;
 			else {
-				if ((dX < 0 && dY < 0) || (dX > 0 && dY > 0))
-					X = X + 1;
+				if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0))
+					x = x + 1;
 				else
-					X = X - 1;
-				pY = pY + 2 * (dX1 - dY1);
+					x = x - 1;
+				py = py + 2 * (dx1 - dy1);
 			}
-			setchar(X, Y, fillCharacter);
+			setchar(x, y, fillCharacter);
 		}
 	}
 	setcolor(CGL_LIGHT_GREY);
@@ -144,17 +144,17 @@ void drawshape(Shape shape, char fillCharacter, int mode, int color) {
     if (mode == CGL_WIREFRAME) {
         for (int i = 0; i < shape.numpts; i++) {
             if (i == 0) {
-                drawline(shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter, color);   
+                drawline(shape.points[shape.numpts - 1].x, shape.points[shape.numpts - 1].y, shape.points[0].x, shape.points[0].y, fillCharacter, color);   
             } else {
-                drawline(shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter, color);   
+                drawline(shape.points[i - 1].x, shape.points[i - 1].y, shape.points[i].x, shape.points[i].y, fillCharacter, color);   
             }
         }
     } else if (mode == CGL_FILL) {
         for (int i = 0; i < shape.numpts; i++) {
             if (i == 0) {
-                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[shape.numpts - 1].X, shape.points[shape.numpts - 1].Y, shape.points[0].X, shape.points[0].Y, fillCharacter, mode, color);   
+                drawtriangle(shape.mid.x, shape.mid.y, shape.points[shape.numpts - 1].x, shape.points[shape.numpts - 1].y, shape.points[0].x, shape.points[0].y, fillCharacter, mode, color);   
             } else {
-                drawtriangle(shape.mid.X, shape.mid.Y, shape.points[i - 1].X, shape.points[i - 1].Y, shape.points[i].X, shape.points[i].Y, fillCharacter, mode, color);   
+                drawtriangle(shape.mid.x, shape.mid.y, shape.points[i - 1].x, shape.points[i - 1].y, shape.points[i].x, shape.points[i].y, fillCharacter, mode, color);   
             }
         }
     }
@@ -168,8 +168,8 @@ void newshape(Shape *shape, Coord *points, size_t numpts) {
     
     for(int i = 0; i < numpts; i++) {
         *(shape->points + i) = points[i];
-        mx += points[i].X;
-        my += points[i].Y;
+        mx += points[i].x;
+        my += points[i].y;
     }
     mx /= numpts;
     my /= numpts;
