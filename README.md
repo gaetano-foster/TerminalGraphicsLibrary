@@ -38,7 +38,7 @@ Any function, macro, or structure prefixed with _exp\__ is **experimental/unfini
 * drawshape - draws the specified shape
 * newshape - allocates memory needed for a shape
 * freeshape - frees memory used by shape
-* drawtri - draws specified triangl
+* drawtri - draws specified triangle
 * setchar - prints char at specified coordinates
 * clrscr - clears screen
 * gotopos - goes to specified coordinates
