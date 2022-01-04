@@ -49,12 +49,12 @@
 	};
 	
 	typedef struct coord {
-		int16_t x, y;
+		int x, y;
 	} Coord;
 	
 	typedef struct rect {
-		int16_t x, y;
-		int16_t w, h;
+		int x, y;
+		int w, h;
 	} Rect;
 	
 	typedef struct tri {
