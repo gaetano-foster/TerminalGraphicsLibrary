@@ -15,7 +15,8 @@
 		#define gotopos(x, y) SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), (COORD){ x, y });
 		#define clrscr() system("cls")
 		
-		enum color {
+		enum color 
+        {
 			CGL_WIN32, CGL_DARK_BLUE, CGL_GREEN, CGL_DARK_CyAN, 
 			CGL_DARK_RED, CGL_DARK_MAGENTA, CGL_DARK_YELLOW, 
 			CGL_LIGHT_GREY, CGL_GREY, CGL_BLUE, CGL_LIME, CGL_CyAN, 
@@ -27,7 +28,8 @@
 		#define gotopos(x, y) printf("%c[%d;%df", 0x1B, y, x)	
 		#define clrscr() system("clear")
 		
-		enum color {
+		enum color 
+        {
 			CGL_DARK_BLUE = 34, CGL_GREEN = 32, CGL_DARK_CyAN = 36, 
 			CGL_DARK_RED = 31, CGL_DARK_MAGENTA = 35, CGL_DARK_YELLOW = 33, 
 			CGL_LIGHT_GREY = 37, CGL_GREY = 90, CGL_BLUE = 94, CGL_LIME = 92, CGL_CyAN = 96, 
@@ -44,24 +46,29 @@
 	
 	// typedefs, structs, enums
 	
-	enum render_mode {
+	enum render_mode 
+    {
 		CGL_WIREFRAME, CGL_FILL
 	};
 	
-	typedef struct coord {
+	typedef struct coord 
+    {
 		int x, y;
 	} Coord;
 	
-	typedef struct rect {
+	typedef struct rect 
+    {
 		int x, y;
 		int w, h;
 	} Rect;
 	
-	typedef struct tri {
+	typedef struct tri 
+    {
 		Coord points[3];
 	} Tri;
     
-    typedef struct shape {
+    typedef struct shape 
+    {
         Coord *points, mid;
         size_t numpts;
     } Shape;
