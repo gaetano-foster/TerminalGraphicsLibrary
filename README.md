@@ -4,9 +4,6 @@ A simple, yet effective graphics library targetting all major operating systems.
 
 ## Features
 
-### Warnings: 
-Any function, macro, or structure prefixed with _exp\__ is **experimental/unfinished**. They may not be very efficient, fast or well implemented. Use at your own risk.
-
 ### Structures:
 * struct coord - A coordinate
   * Members: 
@@ -58,7 +55,8 @@ To give an idea of what you can do with this library, I've created a simple demo
 ```
 #include "CGL.h"
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
 	Rect rectangle = (Rect){ 10, 10, 10, 5 };
         clrscr();
 	drawrect(rectangle, '#', CGL_FILL, RED);
