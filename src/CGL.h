@@ -30,7 +30,7 @@
 			CGL_MAGENTA, 
 			CGL_YELLOW, 
 			CGL_WHITE
-		};h
+		};
 
 	#elif defined(unix) || defined(__unix__) || defined(__unix)
 		
