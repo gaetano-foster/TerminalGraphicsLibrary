@@ -90,13 +90,13 @@
         size_t numpts;
     } CGL_Shape;
 	
-	/* Function Definitions */
+	/*  Function Definitions  */
 
 	// handle.c
 	void setcolor(uint8_t color);
 	void gotopos(int16_t x, int16_t y); 
 	void setchar(int16_t x, int16_t y, char character); 
-	void lcd_hline(int16_t x1, int16_t x2, int16_t y, char character);
+	void lcd_hline(int16_t x1, int16_t x2, int16_t y, char character); // will only draw a horizontal line. It is faster than 
 	void clrscr();
 	
 	// draw.c
