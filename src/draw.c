@@ -216,6 +216,47 @@ void drawtriangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, in
 	}
 }
 
+void drawcircle(int xc, int yc, int r, char fillchar, uint8_t mode)
+{
+    if (mode == CGL_WIREFRAME) {
+        int x = 0;
+		int y = r;
+		int p = 3 - 2 * r;
+		if (!r) return;
+
+		while (y >= x) {
+			setchar(xc - x, yc - y, fillchar); // upper left left
+			setchar(xc - y, yc - x, fillchar); // upper upper left
+			setchar(xc + y, yc - x, fillchar); // upper upper right
+			setchar(xc + x, yc - y, fillchar); // upper right right
+			setchar(xc - x, yc + y, fillchar); // lower left left
+			setchar(xc - y, yc + x, fillchar); // lower lower left
+			setchar(xc + y, yc + x, fillchar); // lower lower right
+			setchar(xc + x, yc + y, fillchar); // lower right right
+			if (p < 0) p += 4 * x++ + 6;
+			else p += 4 * (x++ - y--) + 10;
+		}
+    }
+    else if (mode == CGL_FILL) {
+    	int x = 0;
+		int y = r;
+		int p = 3 - 2 * r;
+		if (!r) return;
+
+		while (y >= x)
+		{
+			// Modified to draw scan-lines instead of edges
+			lcd_hline(xc - x, xc + x, yc - y, fillchar);
+			lcd_hline(xc - y, xc + y, yc - x, fillchar);
+			lcd_hline(xc - x, xc + x, yc + y, fillchar);
+			lcd_hline(xc - y, xc + y, yc + x, fillchar);
+            
+			if (p < 0) p += 4 * x++ + 6;
+			else p += 4 * (x++ - y--) + 10;
+		}
+    }
+}
+
 void drawshape(CGL_Shape shape, char fillchar, uint8_t mode)
 {
     if (mode == CGL_WIREFRAME) {

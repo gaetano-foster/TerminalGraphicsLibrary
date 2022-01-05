@@ -36,21 +36,21 @@
 		
 		enum color 
         {
-			CGL_DARK_BLUE = 34, 
-			CGL_GREEN = 32, 
-			CGL_DARK_CYAN = 36, 
-			CGL_DARK_RED = 31, 
-			CGL_DARK_MAGENTA = 35, 
-			CGL_DARK_YELLOW = 33, 
-			CGL_LIGHT_GREY = 37, 
-			CGL_GREY = 90, 
-			CGL_BLUE = 94, 
-			CGL_LIME = 92, 
-			CGL_CYAN = 96, 
-			CGL_RED = 91, 
-			CGL_MAGENTA = 95, 
-			CGL_YELLOW = 93, 
-			CGL_WHITE = 97
+			CGL_DARK_BLUE        = 34, 
+			CGL_GREEN            = 32, 
+			CGL_DARK_CYAN        = 36, 
+			CGL_DARK_RED         = 31, 
+			CGL_DARK_MAGENTA     = 35, 
+			CGL_DARK_YELLOW      = 33, 
+			CGL_LIGHT_GREY       = 37, 
+			CGL_GREY             = 90, 
+			CGL_BLUE             = 94, 
+			CGL_LIME             = 92, 
+			CGL_CYAN             = 96, 
+			CGL_RED              = 91, 
+			CGL_MAGENTA          = 95, 
+			CGL_YELLOW           = 93, 
+			CGL_WHITE            = 97
 		};
   
 	#endif
@@ -65,30 +65,37 @@
 	};
 	
 	/* A point in space. */
-	typedef struct coord 
+	typedef struct 
     {
 		int16_t x, y;
 	} CGL_Coord;
 	
 	/* A rectangle. */
-	typedef struct rect 
+	typedef struct 
     {
 		int16_t x, y;
 		int16_t w, h;
 	} CGL_Rect;
 	
 	/* A triangle. */
-	typedef struct tri 
+	typedef struct 
     {
 		CGL_Coord points[3];
 	} CGL_Triangle;
     
 	/* A plolygon with an undefined amount of vertices. */
-    typedef struct shape 
+    typedef struct 
     {
         CGL_Coord *points, mid;
         size_t numpts;
     } CGL_Shape;
+    
+    /* A Circle */
+    typedef struct
+    {
+        int x, y;
+        int rad; // radius
+    } CGL_Circle;
 	
 	/*  Function Definitions  */
 
@@ -96,13 +103,14 @@
 	void setcolor(uint8_t color);
 	void gotopos(int16_t x, int16_t y); 
 	void setchar(int16_t x, int16_t y, char character); 
-	void lcd_hline(int16_t x1, int16_t x2, int16_t y, char character); // will only draw a horizontal line. It is faster than 
+	void lcd_hline(int16_t x1, int16_t x2, int16_t y, char character); // will only draw a horizontal line. It is faster
 	void clrscr();
 	
 	// draw.c
 	void drawrect(CGL_Rect rect, char fillchar, uint8_t mode);
 	void drawline(int16_t x1, int16_t y1, int16_t x2, int16_t y2, char fillchar);
 	void drawtriangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, char fillchar, uint8_t mode);
+    void drawcircle(int xc, int yc, int r, char fillchar, uint8_t mode);
     void drawshape(CGL_Shape shape, char fillchar, uint8_t mode);
 
 	// shape.c
