@@ -14,6 +14,7 @@ void newshape(CGL_Shape *shape, CGL_Coord *points, size_t numpts)
     }
     mx /= numpts;
     my /= numpts;
+    
     shape->mid = (CGL_Coord){ mx, my };
 }
 

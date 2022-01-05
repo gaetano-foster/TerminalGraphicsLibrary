@@ -36,7 +36,6 @@ void lcd_hline(int16_t x1, int16_t x2, int16_t y, char character)
 {
 	if (x1 >= x2) 
         SWAP(x1, x2);
-
 	for (; x1 <= x2 ; x1++) 
         setchar(x1, y, character);
 }

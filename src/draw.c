@@ -82,7 +82,7 @@ void drawtriangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, in
 		drawline(x3, y3, x1, y1, fillchar);
 	} 
     else if (mode == CGL_FILL) {
-		/* Source: https://www.avrfreaks.net/sites/default/files/triangles.c */
+		/*  Source: https://www.avrfreaks.net/sites/default/files/triangles.c  */
 		int t1x, t2x, y, minx, maxx, t1xp, t2xp;
 		int changed1 = 0;
 		int changed2 = 0;	
