@@ -17,7 +17,7 @@ void gotopos(int16_t x, int16_t y)
         printf("%c[%d;%df", 0x1B, y, x);
 	#endif
 }	
-void setchar(int16_t x, int16_t y, char character)
+void setchar(int16_t x, int16_t y, wchar_t character)
 {
     gotopos(x, y); 
     putchar(character); 
@@ -32,7 +32,7 @@ void clrscr()
 	#endif
 }
 
-void lcd_hline(int16_t x1, int16_t x2, int16_t y, char character)
+void lcd_hline(int16_t x1, int16_t x2, int16_t y, wchar_t character)
 {
 	if (x1 >= x2) 
         SWAP(x1, x2);

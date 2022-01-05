@@ -1,3 +1,5 @@
+#! /usr/bin/bash
+
 gcc -c src/handle.c src/draw.c src/shape.c
 ar -rc libCGL.a handle.o draw.o shape.o
 rm handle.o

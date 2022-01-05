@@ -1,7 +1,7 @@
 #include <math.h>
 #include "CGL.h"
 
-void drawrect(CGL_Rect rect, char fillchar, uint8_t mode) 
+void drawrect(CGL_Rect rect, wchar_t fillchar, uint8_t mode) 
 {
 	if (mode == CGL_WIREFRAME) {
 		drawline(rect.x, rect.y, rect.x + rect.w, rect.y, fillchar);
@@ -16,7 +16,7 @@ void drawrect(CGL_Rect rect, char fillchar, uint8_t mode)
 	}
 }
 
-void drawline(int16_t x1, int16_t y1, int16_t x2, int16_t y2, char fillchar)
+void drawline(int16_t x1, int16_t y1, int16_t x2, int16_t y2, wchar_t fillchar)
 {
 	int x, y, dx, dy, dx1, dy1, px, py, xe, ye, i;
 
@@ -74,7 +74,7 @@ void drawline(int16_t x1, int16_t y1, int16_t x2, int16_t y2, char fillchar)
 	}
 }
 
-void drawtriangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, char fillchar, uint8_t mode)
+void drawtriangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, wchar_t fillchar, uint8_t mode)
 {
 	if (mode == CGL_WIREFRAME) {
 		drawline(x1, y1, x2, y2, fillchar);
@@ -216,7 +216,7 @@ void drawtriangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, in
 	}
 }
 
-void drawcircle(int xc, int yc, int r, char fillchar, uint8_t mode)
+void drawcircle(int xc, int yc, int r, wchar_t fillchar, uint8_t mode)
 {
     if (mode == CGL_WIREFRAME) {
         int x = 0;
@@ -257,7 +257,7 @@ void drawcircle(int xc, int yc, int r, char fillchar, uint8_t mode)
     }
 }
 
-void drawshape(CGL_Shape shape, char fillchar, uint8_t mode)
+void drawshape(CGL_Shape shape, wchar_t fillchar, uint8_t mode)
 {
     if (mode == CGL_WIREFRAME) {
         for (int i = 0; i < shape.numpts; i++) {

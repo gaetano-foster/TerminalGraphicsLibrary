@@ -102,16 +102,16 @@
 	// handle.c
 	void setcolor(uint8_t color);
 	void gotopos(int16_t x, int16_t y); 
-	void setchar(int16_t x, int16_t y, char character); 
-	void lcd_hline(int16_t x1, int16_t x2, int16_t y, char character); // will only draw a horizontal line. It is faster
+	void setchar(int16_t x, int16_t y, wchar_t character); 
+	void lcd_hline(int16_t x1, int16_t x2, int16_t y, wchar_t character); // will only draw a horizontal line. It is faster
 	void clrscr();
 	
 	// draw.c
-	void drawrect(CGL_Rect rect, char fillchar, uint8_t mode);
-	void drawline(int16_t x1, int16_t y1, int16_t x2, int16_t y2, char fillchar);
-	void drawtriangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, char fillchar, uint8_t mode);
-    void drawcircle(int xc, int yc, int r, char fillchar, uint8_t mode);
-    void drawshape(CGL_Shape shape, char fillchar, uint8_t mode);
+	void drawrect(CGL_Rect rect, wchar_t fillchar, uint8_t mode);
+	void drawline(int16_t x1, int16_t y1, int16_t x2, int16_t y2, wchar_t fillchar);
+	void drawtriangle(int16_t x1, int16_t y1, int16_t x2, int16_t y2, int16_t x3, int16_t y3, wchar_t fillchar, uint8_t mode);
+    void drawcircle(int xc, int yc, int r, wchar_t fillchar, uint8_t mode);
+    void drawshape(CGL_Shape shape, wchar_t fillchar, uint8_t mode);
 
 	// shape.c
     void newshape(CGL_Shape *shape, CGL_Coord *points, size_t numpts);
