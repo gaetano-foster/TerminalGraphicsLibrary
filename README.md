@@ -1,15 +1,10 @@
-# ConsoleGraphicsLibrary
+# TerminalGraphicsLibrary
 
-A simple, yet effective graphics library targetting all major operating systems.
+A wrapper around the linux api which allows you to draw to the terminal. Support for Macintosh and Windows has been removed, as there are other libraries which work on those operating systems with the same basic functionality. Support for double buffering has also been implemented, as terminal applications are hardly functional without it.
 
-## Features
+## How to use
 
-Read the CGL.h file for documentation, because I'm tired of updating this readme.
-
-***MAKE SURE YOU HAVE GCC INSTALLED ONTO YOUR COMPUTER***
-
-To compile your code to an executable, simply execute the following command in your console/terminal, making sure you are in the directory of your project:
-`gcc [filename].c -L. -lCGL -o [filename]`
+Compile using `make lib` in your terminal in the directory you of the folder. You should get a library called "libTGL.a". You can use this for any program with the "TGL.h" header, and the compiler flag `-lTGL`.
 
 ### Sample Code
 To give an idea of what you can do with this library, I've created a simple demo which renders a rectangle for 3 seconds, and then stops. It's quite simple, to try it out for yourself simply copy the following code:
@@ -17,8 +12,7 @@ To give an idea of what you can do with this library, I've created a simple demo
 ```
 #include "CGL.h"
 
-int main(int argc, char **argv) 
-{
+int main(int argc, char **argv) {
 	Rect rectangle = (Rect){ 10, 10, 10, 5 };
         clrscr();
 	drawrect(rectangle, '#', CGL_FILL, RED);
