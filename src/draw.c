@@ -1,7 +1,7 @@
 #include <math.h>
 #include "TGL.h"
 
-void TGL_RenderDrawPoint(TGL_Renderer *renderer, int32_t x, int32_t y) {
+void TGL_RenderDrawPoint(TGL_Renderer *renderer, i32 x, i32 y) {
     renderer->back[y*renderer->SCR_W+x] = (TGL_Pixel) { renderer->sym, renderer->col };
 }
 
@@ -13,7 +13,7 @@ void lcd_hline(TGL_Renderer *renderer, int x1, int x2, int y) {
         TGL_RenderDrawPoint(renderer, x1, y);
 }
 
-void TGL_RenderDrawLine(TGL_Renderer *renderer, int32_t x1, int32_t y1, int32_t x2, int32_t y2) {
+void TGL_RenderDrawLine(TGL_Renderer *renderer, i32 x1, i32 y1, i32 x2, i32 y2) {
     int x, y, dx, dy, dx1, dy1, px, py, xe, ye, i;
 	dx = x2 - x1; 
     dy = y2 - y1;
