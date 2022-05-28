@@ -5,7 +5,7 @@ void TGL_RenderDrawPoint(TGL_Renderer *renderer, i32 x, i32 y) {
     renderer->back[y*renderer->SCR_W+x] = (TGL_Pixel) { renderer->sym, renderer->col };
 }
 
-void lcd_hline(TGL_Renderer *renderer, int x1, int x2, int y) {
+void __hli(TGL_Renderer *renderer, int x1, int x2, int y) {
     if (x1 >= x2) 
         SWAP(x1, x2);
 
@@ -169,7 +169,7 @@ void TGL_RenderDrawTri(TGL_Renderer *renderer, TGL_Tri tri) {
 	    next2:
 	    	if(minx>t1x) minx=t1x; if(minx>t2x) minx=t2x;
 	    	if(maxx<t1x) maxx=t1x; if(maxx<t2x) maxx=t2x;
-	       	lcd_hline(renderer, minx, maxx, y);    // Draw line from min to max points found on the y
+	       	__hli(renderer, minx, maxx, y);    // Draw line from min to max points found on the y
 	    	// Now increase y
 	    	if(!changed1) t1x += signx1;
 	    	t1x+=t1xp;
@@ -224,7 +224,7 @@ void TGL_RenderDrawTri(TGL_Renderer *renderer, TGL_Tri tri) {
 
 	    	if(minx>t1x) minx=t1x; if(minx>t2x) minx=t2x;
 	    	if(maxx<t1x) maxx=t1x; if(maxx<t2x) maxx=t2x;
-	       	lcd_hline(renderer, minx, maxx, y);    // Draw line from min to max points found on the y
+	       	__hli(renderer, minx, maxx, y);    // Draw line from min to max points found on the y
 	    	// Now increase y
 	    	if(!changed1) t1x += signx1;
 	    	t1x+=t1xp;
@@ -264,10 +264,10 @@ void TGL_RenderDrawCircle(TGL_Renderer *renderer, TGL_Circle cir) {
 		if (!r) return;
 
 		while (y >= x) {
-			lcd_hline(renderer, xc - x, xc + x, yc - y);
-			lcd_hline(renderer, xc - y, xc + y, yc - x);
-			lcd_hline(renderer, xc - x, xc + x, yc + y);
-			lcd_hline(renderer, xc - y, xc + y, yc + x);
+			__hli(renderer, xc - x, xc + x, yc - y);
+			__hli(renderer, xc - y, xc + y, yc - x);
+			__hli(renderer, xc - x, xc + x, yc + y);
+			__hli(renderer, xc - y, xc + y, yc + x);
 			if (p < 0) p += 4 * x++ + 6;
 			else p += 4 * (x++ - y--) + 10;
 		}
