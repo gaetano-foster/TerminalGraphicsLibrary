@@ -1,19 +1,19 @@
 #include <math.h>
 #include "TGL.h"
 
-void draw_point(Renderer *renderer, int32_t x, int32_t y) {
-    renderer->back[y*renderer->SCR_W+x] = (Pixel) { renderer->sym, renderer->col };
+void TGL_RenderDrawPoint(TGL_Renderer *renderer, int32_t x, int32_t y) {
+    renderer->back[y*renderer->SCR_W+x] = (TGL_Pixel) { renderer->sym, renderer->col };
 }
 
-void lcd_hline(Renderer *renderer, int x1, int x2, int y) {
+void lcd_hline(TGL_Renderer *renderer, int x1, int x2, int y) {
     if (x1 >= x2) 
         SWAP(x1, x2);
 
 	for (; x1 <= x2 ; x1++) 
-        draw_point(renderer, x1, y);
+        TGL_RenderDrawPoint(renderer, x1, y);
 }
 
-void draw_line(Renderer *renderer, int32_t x1, int32_t y1, int32_t x2, int32_t y2) {
+void TGL_RenderDrawLine(TGL_Renderer *renderer, int32_t x1, int32_t y1, int32_t x2, int32_t y2) {
     int x, y, dx, dy, dx1, dy1, px, py, xe, ye, i;
 	dx = x2 - x1; 
     dy = y2 - y1;
@@ -33,7 +33,7 @@ void draw_line(Renderer *renderer, int32_t x1, int32_t y1, int32_t x2, int32_t y
             y = y2; 
             xe = x1; 
         }
-		draw_point(renderer, x, y);
+		TGL_RenderDrawPoint(renderer, x, y);
 		
 		for (i = 0; x<xe; i++) {
 			x = x + 1;
@@ -46,7 +46,7 @@ void draw_line(Renderer *renderer, int32_t x1, int32_t y1, int32_t x2, int32_t y
                     y = y - 1;
 				px = px + 2 * (dy1 - dx1);
 			}
-			draw_point(renderer, x, y);
+			TGL_RenderDrawPoint(renderer, x, y);
 		}
 	}
 	else {
@@ -61,7 +61,7 @@ void draw_line(Renderer *renderer, int32_t x1, int32_t y1, int32_t x2, int32_t y
             ye = y1; 
         }
 
-		draw_point(renderer, x, y);
+		TGL_RenderDrawPoint(renderer, x, y);
 
 		for (i = 0; y<ye; i++) {
 			y = y + 1;
@@ -71,32 +71,32 @@ void draw_line(Renderer *renderer, int32_t x1, int32_t y1, int32_t x2, int32_t y
 				if ((dx<0 && dy<0) || (dx>0 && dy>0)) x = x + 1; else x = x - 1;
 				py = py + 2 * (dx1 - dy1);
 			}
-			draw_point(renderer, x, y);
+			TGL_RenderDrawPoint(renderer, x, y);
 		}
 	}
 }
 
-void draw_rect(Renderer *renderer, Rectangle rect) {
+void TGL_RenderDrawRect(TGL_Renderer *renderer, TGL_Rect rect) {
     if (renderer->mode == WIREFRAME) {
-        draw_line(renderer, rect.x, rect.y, rect.x + rect.w, rect.y);
-        draw_line(renderer, rect.x + rect.w, rect.y, rect.x + rect.w, rect.y + rect.h);
-        draw_line(renderer, rect.x + rect.w, rect.y + rect.h, rect.x, rect.y + rect.h);
-        draw_line(renderer, rect.x, rect.y + rect.h, rect.x + rect.w, rect.y);
+        TGL_RenderDrawLine(renderer, rect.x, rect.y, rect.x + rect.w, rect.y);
+        TGL_RenderDrawLine(renderer, rect.x + rect.w, rect.y, rect.x + rect.w, rect.y + rect.h);
+        TGL_RenderDrawLine(renderer, rect.x + rect.w, rect.y + rect.h, rect.x, rect.y + rect.h);
+        TGL_RenderDrawLine(renderer, rect.x, rect.y + rect.h, rect.x + rect.w, rect.y);
     }
     else if (renderer->mode == FILL) {
         for (int y = rect.y; y < rect.y + rect.h; y++) {
             for (int x = rect.x; x < rect.x + rect.w; x++) {
-                draw_point(renderer, x, y);
+                TGL_RenderDrawPoint(renderer, x, y);
             }
         }
     }
 }
 
-void draw_triangle(Renderer *renderer, Triangle tri) {
+void TGL_RenderDrawTri(TGL_Renderer *renderer, TGL_Tri tri) {
     if (renderer->mode == WIREFRAME) {
-        draw_line(renderer, tri.points[0].x, tri.points[0].y, tri.points[1].x, tri.points[1].y);
-        draw_line(renderer, tri.points[1].x, tri.points[1].y, tri.points[2].x, tri.points[2].y);
-        draw_line(renderer, tri.points[2].x, tri.points[2].y, tri.points[0].x, tri.points[0].y);
+        TGL_RenderDrawLine(renderer, tri.points[0].x, tri.points[0].y, tri.points[1].x, tri.points[1].y);
+        TGL_RenderDrawLine(renderer, tri.points[1].x, tri.points[1].y, tri.points[2].x, tri.points[2].y);
+        TGL_RenderDrawLine(renderer, tri.points[2].x, tri.points[2].y, tri.points[0].x, tri.points[0].y);
     }
     else if (renderer->mode == FILL) { 
         int x1 = tri.points[0].x, y1 = tri.points[0].y,
@@ -236,7 +236,7 @@ void draw_triangle(Renderer *renderer, Triangle tri) {
     }
 }
 
-void draw_circle(Renderer *renderer, Circle cir) {
+void TGL_RenderDrawCircle(TGL_Renderer *renderer, TGL_Circle cir) {
     int xc = cir.x, yc = cir.y, r = cir.rad;
     if (renderer->mode == WIREFRAME) {
         int x = 0;
@@ -245,14 +245,14 @@ void draw_circle(Renderer *renderer, Circle cir) {
 	    if (!r) return;
 
 	    while (y >= x) { // only formulate 1/8 of circle
-	    	draw_point(renderer, xc - x, yc - y);//upper left left
-	    	draw_point(renderer, xc - y, yc - x);//upper upper left
-	    	draw_point(renderer, xc + y, yc - x);//upper upper right
-	    	draw_point(renderer, xc + x, yc - y);//upper right right
-	    	draw_point(renderer, xc - x, yc + y);//lower left left
-	    	draw_point(renderer, xc - y, yc + x);//lower lower left
-	    	draw_point(renderer, xc + y, yc + x);//lower lower right
-	    	draw_point(renderer, xc + x, yc + y);//lower right right
+	    	TGL_RenderDrawPoint(renderer, xc - x, yc - y);//upper left left
+	    	TGL_RenderDrawPoint(renderer, xc - y, yc - x);//upper upper left
+	    	TGL_RenderDrawPoint(renderer, xc + y, yc - x);//upper upper right
+	    	TGL_RenderDrawPoint(renderer, xc + x, yc - y);//upper right right
+	    	TGL_RenderDrawPoint(renderer, xc - x, yc + y);//lower left left
+	    	TGL_RenderDrawPoint(renderer, xc - y, yc + x);//lower lower left
+	    	TGL_RenderDrawPoint(renderer, xc + y, yc + x);//lower lower right
+	    	TGL_RenderDrawPoint(renderer, xc + x, yc + y);//lower right right
 	    	if (p < 0) p += 4 * x++ + 6;
 	    	else p += 4 * (x++ - y--) + 10;
 	    }
