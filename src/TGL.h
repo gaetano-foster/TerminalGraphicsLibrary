@@ -31,8 +31,7 @@ typedef struct _pixel {
 	TGL_Color col;
 } TGL_Pixel;
 
-typedef struct _renderer
-{
+typedef struct _renderer {
 	char sym;
 	TGL_Color col;
 	enum {
@@ -46,19 +45,16 @@ typedef struct _renderer
 typedef VEC2_GENERIC(i32) TGL_Vec2i;
 typedef VEC2_GENERIC(float) TGL_Vec2f;
 
-typedef struct _rect
-{
+typedef struct _rect {
 	i32 x, y;
 	i32 w, h;
 } TGL_Rect;
 
-typedef struct _tri
-{
+typedef struct _tri {
 	TGL_Vec2i points[3];
 } TGL_Tri;
 
-typedef struct _cir
-{
+typedef struct _cir {
 	i32 x, y;
 	i32 rad;
 } TGL_Circle;
