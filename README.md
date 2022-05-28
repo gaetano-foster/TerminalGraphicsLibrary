@@ -14,16 +14,16 @@ Here is how the code would be used. This program renders a triangle to the termi
 #include "TGL.h"
 
 int main() {
-	Renderer renderer;
-	renderer_makenew(&renderer);
-	renderer_setpixel(&renderer, '@', FG_RED, BG_BLUE);
+	TGL_Renderer renderer;
+	TGL_RendererMakeNew(&renderer);
+	TGL_SetRenderPixel(&renderer, '@', FG_RED, BG_BLUE);
 	renderer.mode = FILL;
 	system("clear");
 	while (1) {
-		clrscr(&renderer);
-		draw_triangle(&renderer, (Triangle) { (Vec2i) { 10, 5 }, (Vec2i) { 10, 10 }, (Vec2i) { 5, 5 } });
-		renderer_present(&renderer);
+		TGL_clrscr(&renderer);
+		TGL_RenderDrawTri(&renderer, (TGL_Tri) { (TGL_Vec2i) { 10, 5 }, (TGL_Vec2i) { 10, 10 }, (TGL_Vec2i) { 5, 5 } });
+		TGL_RendererPresent(&renderer);
 	}
-	renderer_destroy(&renderer);
+	TGL_RendererDestroy(&renderer);
 }
 ```
